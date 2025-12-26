@@ -1,0 +1,29 @@
+#regForm {
+  border: 2px solid black;
+  margin: 30px auto;
+  width: 30%;
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#regForm label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 12px auto;
+  color: #003f55;
+}
+
+#regForm input {
+  width: 300px;
+  padding: 6px 8px;
+  border: 1px solid #8e8e8e;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 4px auto;
+}
+
+#regBtn {
+  width: 100px;
+}

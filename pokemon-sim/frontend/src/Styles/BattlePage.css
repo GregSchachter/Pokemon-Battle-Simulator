@@ -1,0 +1,21 @@
+#battlePageForm {
+  border: 1px solid black;
+  margin: 20px auto;
+  width: 30%;
+  padding: 10px;
+  position: relative;
+}
+
+#battlePageForm label {
+  margin: 5px;
+}
+
+#battlePageForm select {
+  margin-right: 15px;
+}
+
+#battlePageForm button {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+}

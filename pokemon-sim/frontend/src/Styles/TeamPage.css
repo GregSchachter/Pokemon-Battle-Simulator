@@ -1,0 +1,79 @@
+#createTeamBtn {
+  margin-top: 15px;
+  background-color: #0d7ea1;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+#createTeamBtn:hover {
+  background-color: #0a6988;
+}
+
+#createTeamBtn:active {
+  transform: scale(0.96);
+}
+
+.savedTeams {
+  position: relative;
+  border: 1px solid black;
+  margin: 20px;
+  width: 40%;
+}
+
+.savedTeamsImg {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.savedTeams img {
+  width: 140px;
+}
+
+.teamDeleteBtn {
+  position: absolute;
+  background: #f4f4f4;
+  border: 2px solid #b33a3a;
+  color: #b33a3a;
+  font-weight: bold;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 1px 1px 0 #911e1e;
+  margin: 0 4px;
+  top: 5px;
+  right: 10px;
+}
+
+.teamDeleteBtn:hover {
+  background: #e7f9ff;
+}
+
+.editTeamBtn {
+  position: absolute;
+  background: #f4f4f4;
+  border: 2px solid #0d7ea1;
+  color: #0d7ea1;
+  font-weight: bold;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 4px;
+  top: 5px;
+  right: 100px;
+}
+
+.editTeamBtn:hover {
+  background: #e7f9ff;
+}
+
+.savedTeams h3 {
+  padding-left: 10px;
+  margin-top: 10px;
+}

@@ -1,0 +1,41 @@
+#battleBox {
+  border: 1px black solid;
+  width: 50%;
+  margin: 20px auto;
+  height: 600px;
+  position: relative;
+  /* background-image: url("https://lh3.googleusercontent.com/proxy/QpoAUgA50wMSn2tSe3dSveJm-viz3LahzYqNWJ3Vh75M5NHPYJe9vLqJkhL3V8BAXIhurZefht_8oKISBhszkzSkDC9LZBQ");
+  background-size: 100%; */
+  background: #75d8ff;
+  background: linear-gradient(
+    0deg,
+    rgba(117, 216, 255, 1) 0%,
+    rgba(208, 230, 242, 1) 100%
+  );
+}
+
+#playerSprite {
+  height: 225px;
+  position: absolute;
+  bottom: 140px;
+  left: 15%;
+}
+
+#compSprite {
+  height: 225px;
+  position: absolute;
+  top: 20px;
+  right: 10%;
+}
+
+#player-InfoBox {
+  position: absolute;
+  bottom: 160px;
+  right: 60px;
+}
+
+#comp-InfoBox {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+}

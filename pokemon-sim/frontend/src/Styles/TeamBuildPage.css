@@ -1,0 +1,76 @@
+#buildPage {
+  border: 2px black solid;
+  margin: 30px auto;
+  width: 50%;
+}
+
+.tab {
+  font-size: 1.25rem;
+  background-color: #0092cc;
+  border: #005c80 1px solid;
+  margin: 0;
+  width: calc(100% / 6);
+}
+
+.tabActive {
+  font-size: 1.25rem;
+  background-color: #005c80;
+  border: #005c80 1px solid;
+  color: white;
+  margin: 0;
+  width: calc(100% / 6);
+}
+
+#buildForm {
+  margin: 30px 25px;
+  position: relative;
+}
+
+hr {
+  border: none;
+  height: 10px;
+}
+
+input {
+  width: 200px;
+}
+
+.moveInput {
+  margin-right: 10px;
+}
+
+#teamInput {
+  width: 400px;
+}
+
+.buildFormSprite {
+  position: absolute;
+  top: 130px;
+  right: 45%;
+  width: 120px;
+}
+
+.buildFormBtn {
+  margin-top: 15px;
+  background-color: #0d7ea1;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.buildFormBtn:hover {
+  background-color: #0a6988;
+}
+
+.buildFormBtn:active {
+  transform: scale(0.96);
+}
+
+#buildFormError {
+  color: red;
+  margin: 15px;
+}

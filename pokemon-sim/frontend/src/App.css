@@ -1,0 +1,39 @@
+html {
+  background-color: #f1ebda;
+}
+
+nav {
+  display: flex;
+  justify-content: space-evenly;
+  width: 40%;
+  margin: 3px auto;
+}
+
+a {
+  text-decoration: none;
+  font-size: 2rem;
+  color: #005c80;
+}
+
+a:hover {
+  color: #0092cc;
+}
+
+#battle {
+  position: relative;
+}
+
+#logoutBtn {
+  font-size: 2rem;
+  font-family: inherit;
+  color: #005c80;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#logoutBtn:hover {
+  color: #0092cc;
+}

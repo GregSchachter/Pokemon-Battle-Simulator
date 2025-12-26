@@ -1,0 +1,20 @@
+@keyframes flash {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.flash {
+  animation: flash 0.2s ease-in-out 3;
+}
+
+#loading {
+  position: absolute;
+  margin: 5px auto;
+  left: 43%;
+  width: 200px;
+}

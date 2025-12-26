@@ -1,0 +1,81 @@
+#battleTextBox {
+  border: 1px solid black;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 140px;
+  background-color: #d6c48d;
+  padding: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#topRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#intTextBox {
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: #2d2414;
+  height: 35px;
+  overflow: hidden;
+  flex: 1;
+}
+
+#topButtons {
+  display: flex;
+  gap: 4px;
+}
+
+#moveBtnContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-top: 4px;
+  margin-top: 10px;
+}
+
+.moveBtn {
+  background: white;
+  border: 2px solid #0d7ea1;
+  color: #0d7ea1;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  flex: 1 1 calc(25% - 4px); /* 4 buttons per row */
+  text-align: center;
+  box-shadow: 1px 1px 0 #0a5a77;
+}
+
+.moveBtn:hover {
+  background: #e7f9ff;
+}
+
+#topButtons button {
+  background: #f4f4f4;
+  border: 2px solid #b33a3a;
+  color: #b33a3a;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 4px;
+}
+
+#topButtons button#infoBtn {
+  border-color: #0d7ea1;
+  color: #0d7ea1;
+}
+
+#topButtons button:hover {
+  background: #e7f9ff;
+}

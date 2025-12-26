@@ -1,0 +1,41 @@
+#loginForm {
+  border: 2px solid black;
+  margin: 30px auto;
+  width: 30%;
+  padding: 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+#loginForm label {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 12px auto;
+  color: #003f55;
+}
+
+#loginForm input {
+  width: 300px;
+  padding: 6px 8px;
+  border: 1px solid #8e8e8e;
+  border-radius: 4px;
+  font-size: 14px;
+  margin: 4px auto;
+}
+
+#loginBtn {
+  width: 100px;
+}
+
+.loginRegBtns {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10px;
+}
+
+#loginError {
+  color: red;
+  margin: 5px auto;
+  height: 20px;
+}

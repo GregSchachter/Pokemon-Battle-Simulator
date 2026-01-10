@@ -12,6 +12,7 @@ import axios from "axios";
 import { useContext } from "react";
 import ProtectRoute from "./ProtectRoute";
 import PublicRoutes from "./PublicRoutes";
+import TeamEditPage from "../Pages/TeamEditPage";
 
 export default function AppRoutes() {
   const { authInfo, setAuthInfo } = useContext(authContext);
@@ -46,6 +47,7 @@ export default function AppRoutes() {
         <Route element={<ProtectRoute />}>
           <Route path="/team" element={<TeamPage />} />
           <Route path="/build" element={<TeamBuildPage />} />
+          <Route path="/edit" element={<TeamEditPage />} />
           <Route path="/battle" element={<BattlePage />} />
         </Route>
         <Route element={<PublicRoutes />}>

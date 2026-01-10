@@ -18,7 +18,7 @@ export default function BattlePage() {
     difficulty: "",
   });
 
-  const trainers = ["Cynthia", "trap test2"];
+  const trainers = ["Red", "Lance", "Steven", "Cynthia", "N"];
 
   useEffect(() => {
     async function getTeams() {

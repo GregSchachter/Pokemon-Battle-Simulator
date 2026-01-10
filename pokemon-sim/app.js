@@ -7,15 +7,12 @@ const path = require("path");
 
 const app = express();
 
+app.use(corsMiddleware);
+app.use("/api", require("./routes/Routes"));
 app.use(express.json());
 app.use(cookieParser());
-app.use(corsMiddleware);
 
 app.use(routes);
-
-// app.get("/", (req, res) => {
-//   res.send("test");
-// });
 
 const startServer = async () => {
   try {

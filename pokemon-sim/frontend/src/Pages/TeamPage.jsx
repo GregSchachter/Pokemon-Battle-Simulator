@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import "../Styles/TeamPage.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function TeamPage() {
   const [teams, setTeams] = useState([]);
+  const navigate = useNavigate();
 
   const link = "https://pokeapi.co/api/v2/pokemon/";
 
@@ -41,6 +43,12 @@ export default function TeamPage() {
     window.location.href = "/build";
   };
 
+  const handleEdit = (name, e) => {
+    navigate("/edit", {
+      state: { teamName: name },
+    });
+  };
+
   const handleDelete = async (name, e) => {
     const res = await axios.delete(
       "http://localhost:3000/team",
@@ -68,7 +76,11 @@ export default function TeamPage() {
                   return <img src={mon} />;
                 })}
               </div>
-              <button className="editTeamBtn">Edit</button>
+              <button
+                className="editTeamBtn"
+                onClick={() => handleEdit(team.teamName)}>
+                Edit
+              </button>
               <button
                 className="teamDeleteBtn"
                 onClick={() => handleDelete(team.teamName)}>

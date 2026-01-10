@@ -1,0 +1,13 @@
+#homePageDiv {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#homePageDiv p {
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+#homePageDiv img {
+  width: 40%;
+}

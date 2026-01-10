@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import TeamValidation from "../Helpers/TeamValidation";
 import "../Styles/TeamBuildPage.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
-export default function TeamBuildPage() {
+export default function TeamEditPage() {
   const navigate = useNavigate();
+  const { state } = useLocation();
   const [activeTab, setActiveTab] = useState("tab1");
   const [pokemon, setPokemon] = useState([]);
   const [monMoves, setMonMoves] = useState([]);
@@ -13,6 +14,7 @@ export default function TeamBuildPage() {
   const [teamMoves, setTeamMoves] = useState([[], [], [], [], [], []]);
   const [valid, setValid] = useState(true);
   const [valError, setValError] = useState("");
+  const [teamId, setTeamId] = useState("");
   const [team, setTeam] = useState([
     {
       name: "",
@@ -65,6 +67,42 @@ export default function TeamBuildPage() {
     "",
   ]);
 
+  const reqTeam = state.teamName;
+  let idx = Number(activeTab.replace("tab", "")) - 1;
+  let mon = team[idx];
+  useEffect(() => {
+    async function getTeam() {
+      const res = await axios.get(`http://localhost:3000/team/${reqTeam}`, {
+        withCredentials: true,
+      });
+      const team = res.data.result.mons;
+      setTeamId(res.data.result._id);
+      const formattedTeam = team.map((mon) => ({
+        name: mon.name,
+        level: mon.level,
+        move1: mon.moves?.[0] || "",
+        move2: mon.moves?.[1] || "",
+        move3: mon.moves?.[2] || "",
+        move4: mon.moves?.[3] || "",
+      }));
+
+      while (formattedTeam.length < 6) {
+        formattedTeam.push({
+          name: "",
+          level: "",
+          move1: "",
+          move2: "",
+          move3: "",
+          move4: "",
+        });
+      }
+
+      formattedTeam.push(reqTeam);
+      setTeam(formattedTeam);
+    }
+    getTeam();
+  }, []);
+
   useEffect(() => {
     async function getPokemon() {
       try {
@@ -79,6 +117,44 @@ export default function TeamBuildPage() {
     }
     getPokemon();
   }, []);
+
+  useEffect(() => {
+    const mon = team[idx];
+    if (!mon?.name) return;
+
+    const name = mon.name.toLowerCase();
+
+    if (!pokemon.includes(name)) {
+      setSprites((prev) => ({ ...prev, [activeTab]: "" }));
+      return;
+    }
+
+    async function loadPokemon() {
+      const { moves, sprite } = await pokemonSelected(name);
+      setMonMoves(moves);
+      setSprites((prev) => ({ ...prev, [activeTab]: sprite }));
+    }
+
+    loadPokemon();
+  }, [team[idx]?.name, idx, activeTab]);
+
+  useEffect(() => {
+    async function loadAllMoves() {
+      if (!team) return;
+
+      const movesArr = await Promise.all(
+        team.slice(0, 6).map(async (mon) => {
+          if (!mon.name) return [];
+          const { moves } = await pokemonSelected(mon.name.toLowerCase());
+          return moves;
+        })
+      );
+
+      setTeamMoves(movesArr);
+    }
+
+    loadAllMoves();
+  }, [team]);
   const tabs = [
     { id: "tab1", title: "Pokemon 1" },
     { id: "tab2", title: "Pokemon 2" },
@@ -88,14 +164,11 @@ export default function TeamBuildPage() {
     { id: "tab6", title: "Pokemon 6" },
   ];
 
-  let idx = Number(activeTab.replace("tab", "")) - 1;
-  let mon = team[idx];
-
   const tabChange = (e) => {
     setActiveTab(e.target.id);
   };
 
-  const handleChange = async (e) => {
+  const handleChange = (e) => {
     setValid(true);
     const { name, value } = e.target;
 
@@ -107,25 +180,15 @@ export default function TeamBuildPage() {
     setTeam((prev) =>
       prev.map((mon, i) => (i === idx ? { ...mon, [name]: value } : mon))
     );
-
-    if (name === "name") {
-      if (pokemon.includes(value.toLowerCase())) {
-        const { moves, sprite } = await pokemonSelected(value.toLowerCase());
-        setMonMoves(moves);
-        setSprites((prev) => ({ ...prev, [activeTab]: sprite }));
-      } else {
-        setSprites((prev) => ({ ...prev, [activeTab]: "" }));
-      }
-    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const val = TeamValidation(team, pokemon, teamMoves);
     if (!val) {
-      const res = await axios.post(
-        "http://localhost:3000/build",
-        { submittedTeam: team },
+      const res = await axios.put(
+        "http://localhost:3000/edit",
+        { teamId, submittedTeam: team },
         {
           withCredentials: true,
         }
@@ -197,6 +260,7 @@ export default function TeamBuildPage() {
       "endeavor",
       "hidden-power",
     ];
+
     const filteredMoves = moveDetails
       .filter(
         (m) =>
@@ -314,7 +378,7 @@ export default function TeamBuildPage() {
           ))}
         </datalist>
         <button className="buildFormBtn" type="submit">
-          Submit
+          Update
         </button>
       </form>
       <div id="buildFormError">{valid === false ? valError : null}</div>

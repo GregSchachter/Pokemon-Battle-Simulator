@@ -57,6 +57,5 @@ export default function TeamValidation(team, pokemon, moves) {
   else if (totalErrors.includes("Moves"))
     val = "Moves must be part of the Pokemon's learn set";
 
-  console.log(val);
   return val;
 }

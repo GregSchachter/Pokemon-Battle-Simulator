@@ -633,6 +633,8 @@ export default function Battle({ playerTeam, compTeam, compDifficulty }) {
             if (onField[1].pokemon === currCompTeam[i].pokemon) {
               if (i === currCompTeam.length - 1) {
                 setText("Congratulations! You Won!");
+                await wait(4000);
+                window.location.reload();
               } else {
                 setOnField((prev) =>
                   prev.map((mon, j) => (j === 1 ? currCompTeam[i + 1] : mon))

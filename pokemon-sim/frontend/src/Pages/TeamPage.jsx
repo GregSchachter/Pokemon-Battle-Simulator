@@ -40,7 +40,7 @@ export default function TeamPage() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    window.location.href = "/build";
+    navigate("/build");
   };
 
   const handleEdit = (name, e) => {

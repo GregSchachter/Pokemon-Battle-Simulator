@@ -82,7 +82,7 @@ export default function RegisterPage() {
             className="buildFormBtn"
             id="loginPageLink"
             onClick={() => {
-              window.location.href = "/login";
+              navigate("/login");
             }}>
             Login Page
           </button>

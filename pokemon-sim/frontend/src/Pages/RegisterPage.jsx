@@ -38,6 +38,7 @@ export default function RegisterPage() {
     try {
       const res = await axios.post(`${url}/signup`, signupData, {
         withCredentials: true,
+        timeout: 120000,
       });
       setAuthInfo({
         auth: true,

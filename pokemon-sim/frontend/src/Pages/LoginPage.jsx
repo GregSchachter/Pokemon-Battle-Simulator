@@ -35,6 +35,7 @@ export default function LoginPage() {
     try {
       const res = await axios.post(`${url}/login`, loginData, {
         withCredentials: true,
+        timeout: 120000,
       });
       setAuthInfo({
         auth: true,

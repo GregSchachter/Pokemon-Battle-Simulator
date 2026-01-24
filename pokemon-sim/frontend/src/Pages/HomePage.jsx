@@ -1,4 +1,5 @@
 import homePageGif from "../Styles/pictures/homepage.gif";
+import { useEffect } from "react";
 import "../Styles/HomePage.css";
 
 export default function HomePage() {

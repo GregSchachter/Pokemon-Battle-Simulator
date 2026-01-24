@@ -1,26 +1,32 @@
 import homePageGif from "../Styles/pictures/homepage.gif";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import "../Styles/HomePage.css";
 
 export default function HomePage() {
   const url = import.meta.env.VITE_URL;
 
-  const pageGet = async () => {
-    try {
-      const res = await axios.get(`${url}/`, {
-        withCredentials: true,
-      });
-      console.log("Server woke up:", res.data);
-    } catch (err) {
-      console.error("Error waking server:", err);
-    }
-  };
+  const [serverAwake, setServerAwake] = useState(false);
 
   useEffect(() => {
-    console.log("Wake up server");
-    pageGet();
+    const wakeServer = async () => {
+      let attempts = 0;
+      while (!serverAwake && attempts < 5) {
+        try {
+          await axios.get(`${url}/health`, { withCredentials: true });
+          console.log("Server is awake!");
+          setServerAwake(true);
+        } catch (err) {
+          console.warn("Server still sleeping, retrying...");
+          attempts++;
+          await new Promise((r) => setTimeout(r, 5000)); // wait 5s
+        }
+      }
+    };
+    wakeServer();
   }, []);
+
+  if (!serverAwake) return <p>Loading… server is waking up</p>;
 
   return (
     <div id="homePageDiv">

@@ -4,7 +4,7 @@ const corsMiddleware = require("../middleware/cors");
 
 const router = Router();
 
-router.get("/", controller.home_get);
+router.get("/health", controller.home_get);
 router.get("/logout", controller.logout_get);
 router.get("/me", controller.me_get);
 router.get("/team", controller.team_get);

@@ -7,12 +7,18 @@ export default function HomePage() {
   const url = import.meta.env.VITE_URL;
 
   const pageGet = async () => {
-    const res = await axios.get(`${url}/`, {
-      withCredentials: true,
-    });
+    try {
+      const res = await axios.get(`${url}/`, {
+        withCredentials: true,
+      });
+      console.log("Server woke up:", res.data);
+    } catch (err) {
+      console.error("Error waking server:", err);
+    }
   };
 
   useEffect(() => {
+    console.log("Wake up server");
     pageGet();
   }, []);
 

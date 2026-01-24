@@ -45,6 +45,10 @@ module.exports.me_get = async (req, res) => {
   }
 };
 
+module.exports.home_get = async (req, res) => {
+  res.send("Server Awake");
+};
+
 module.exports.team_get = async (req, res) => {
   const token = req.cookies.jwt;
   const user = jwt.verify(token, secret).id;
@@ -191,7 +195,7 @@ module.exports.edit_patch = async (req, res) => {
         mons,
         teamName,
       },
-      { new: true, runValidators: true }
+      { new: true, runValidators: true },
     );
     res.status(201).json({ message: "Team saved" });
   } catch (error) {

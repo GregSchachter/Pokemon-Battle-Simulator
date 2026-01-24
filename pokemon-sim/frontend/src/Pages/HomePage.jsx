@@ -2,7 +2,17 @@ import homePageGif from "../Styles/pictures/homepage.gif";
 import "../Styles/HomePage.css";
 
 export default function HomePage() {
-  console.log(homePageGif);
+  const url = import.meta.env.VITE_URL;
+
+  const pageGet = async () => {
+    const res = await axios.get(`${url}/`, {
+      withCredentials: true,
+    });
+  };
+
+  useEffect(() => {
+    pageGet();
+  }, []);
   return (
     <div id="homePageDiv">
       <p>Create, Save, and Edit your teams!</p>

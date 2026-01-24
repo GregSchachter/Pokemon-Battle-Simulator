@@ -12,10 +12,11 @@ function App() {
     user: null,
   });
 
+  const url = import.meta.env.VITE_URL;
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/me", {
+        const res = await axios.get(`${url}/me`, {
           withCredentials: true,
         });
         setAuthInfo({

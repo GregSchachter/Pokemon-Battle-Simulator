@@ -69,7 +69,7 @@ export default function TeamBuildPage() {
     async function getPokemon() {
       try {
         const res = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=2000"
+          "https://pokeapi.co/api/v2/pokemon?limit=2000",
         );
         const names = res.data.results.map((p) => p.name);
         setPokemon(names);
@@ -105,7 +105,7 @@ export default function TeamBuildPage() {
     }
 
     setTeam((prev) =>
-      prev.map((mon, i) => (i === idx ? { ...mon, [name]: value } : mon))
+      prev.map((mon, i) => (i === idx ? { ...mon, [name]: value } : mon)),
     );
 
     if (name === "name") {
@@ -119,16 +119,17 @@ export default function TeamBuildPage() {
     }
   };
 
+  const url = import.meta.env.VITE_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const val = TeamValidation(team, pokemon, teamMoves);
     if (!val) {
       const res = await axios.post(
-        "http://localhost:3000/build",
+        `${url}/build`,
         { submittedTeam: team },
         {
           withCredentials: true,
-        }
+        },
       );
       navigate("/team");
     } else {
@@ -148,7 +149,7 @@ export default function TeamBuildPage() {
           name: m.move.name,
           damage_class: moveRes.data.damage_class.name,
         };
-      })
+      }),
     );
 
     const bannedMoves = [
@@ -201,7 +202,7 @@ export default function TeamBuildPage() {
       .filter(
         (m) =>
           (m.damage_class === "physical" || m.damage_class === "special") &&
-          !bannedMoves.includes(m.name)
+          !bannedMoves.includes(m.name),
       )
       .map((m) => m.name);
 

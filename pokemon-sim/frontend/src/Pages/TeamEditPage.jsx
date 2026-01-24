@@ -67,12 +67,13 @@ export default function TeamEditPage() {
     "",
   ]);
 
+  const url = import.meta.env.VITE_URL;
   const reqTeam = state.teamName;
   let idx = Number(activeTab.replace("tab", "")) - 1;
   let mon = team[idx];
   useEffect(() => {
     async function getTeam() {
-      const res = await axios.get(`http://localhost:3000/team/${reqTeam}`, {
+      const res = await axios.get(`${url}/team/${reqTeam}`, {
         withCredentials: true,
       });
       const team = res.data.result.mons;
@@ -107,7 +108,7 @@ export default function TeamEditPage() {
     async function getPokemon() {
       try {
         const res = await axios.get(
-          "https://pokeapi.co/api/v2/pokemon?limit=2000"
+          "https://pokeapi.co/api/v2/pokemon?limit=2000",
         );
         const names = res.data.results.map((p) => p.name);
         setPokemon(names);
@@ -147,7 +148,7 @@ export default function TeamEditPage() {
           if (!mon.name) return [];
           const { moves } = await pokemonSelected(mon.name.toLowerCase());
           return moves;
-        })
+        }),
       );
 
       setTeamMoves(movesArr);
@@ -178,7 +179,7 @@ export default function TeamEditPage() {
     }
 
     setTeam((prev) =>
-      prev.map((mon, i) => (i === idx ? { ...mon, [name]: value } : mon))
+      prev.map((mon, i) => (i === idx ? { ...mon, [name]: value } : mon)),
     );
   };
 
@@ -187,11 +188,11 @@ export default function TeamEditPage() {
     const val = TeamValidation(team, pokemon, teamMoves);
     if (!val) {
       const res = await axios.put(
-        "http://localhost:3000/edit",
+        `${url}/edit`,
         { teamId, submittedTeam: team },
         {
           withCredentials: true,
-        }
+        },
       );
       navigate("/team");
     } else {
@@ -211,7 +212,7 @@ export default function TeamEditPage() {
           name: m.move.name,
           damage_class: moveRes.data.damage_class.name,
         };
-      })
+      }),
     );
 
     const bannedMoves = [
@@ -265,7 +266,7 @@ export default function TeamEditPage() {
       .filter(
         (m) =>
           (m.damage_class === "physical" || m.damage_class === "special") &&
-          !bannedMoves.includes(m.name)
+          !bannedMoves.includes(m.name),
       )
       .map((m) => m.name);
 

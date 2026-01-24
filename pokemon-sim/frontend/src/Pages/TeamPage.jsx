@@ -8,10 +8,10 @@ export default function TeamPage() {
   const navigate = useNavigate();
 
   const link = "https://pokeapi.co/api/v2/pokemon/";
-
+  const url = import.meta.env.VITE_URL;
   const getTeams = async () => {
     setTeams([]);
-    const res = await axios.get("http://localhost:3000/team", {
+    const res = await axios.get(`${url}/team`, {
       withCredentials: true,
     });
 
@@ -21,14 +21,14 @@ export default function TeamPage() {
           team.mons.map(async (mon) => {
             const pokeRes = await axios.get(link + mon.name);
             return pokeRes.data.sprites.front_default;
-          })
+          }),
         );
 
         return {
           teamName: team.teamName,
           mons: sprites,
         };
-      })
+      }),
     );
 
     setTeams(allTeams);
@@ -51,11 +51,11 @@ export default function TeamPage() {
 
   const handleDelete = async (name, e) => {
     const res = await axios.delete(
-      "http://localhost:3000/team",
+      `${url}/team`,
       { data: { name } },
       {
         withCredentials: true,
-      }
+      },
     );
     getTeams();
   };

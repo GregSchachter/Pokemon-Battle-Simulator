@@ -27,6 +27,7 @@ export default function RegisterPage() {
     }));
   };
 
+  const url = import.meta.env.VITE_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const signupData = {
@@ -35,7 +36,7 @@ export default function RegisterPage() {
       password: user.password,
     };
     try {
-      const res = await axios.post("http://localhost:3000/signup", signupData, {
+      const res = await axios.post(`${url}/signup`, signupData, {
         withCredentials: true,
       });
       setAuthInfo({

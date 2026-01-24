@@ -16,9 +16,9 @@ import TeamEditPage from "../Pages/TeamEditPage";
 
 export default function AppRoutes() {
   const { authInfo, setAuthInfo } = useContext(authContext);
-
+  const url = import.meta.env.VITE_URL;
   const handleClick = async () => {
-    const res = await axios.get("http://localhost:3000/logout", {
+    const res = await axios.get(`${url}/logout`, {
       withCredentials: true,
     });
     setAuthInfo({

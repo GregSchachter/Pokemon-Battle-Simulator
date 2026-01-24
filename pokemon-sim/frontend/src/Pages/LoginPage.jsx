@@ -25,6 +25,7 @@ export default function LoginPage() {
     }));
   };
 
+  const url = import.meta.env.VITE_URL;
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loginData = {
@@ -32,7 +33,7 @@ export default function LoginPage() {
       password: user.password,
     };
     try {
-      const res = await axios.post("http://localhost:3000/login", loginData, {
+      const res = await axios.post(`${url}/login`, loginData, {
         withCredentials: true,
       });
       setAuthInfo({

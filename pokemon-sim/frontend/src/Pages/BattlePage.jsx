@@ -20,10 +20,12 @@ export default function BattlePage() {
 
   const trainers = ["Red", "Lance", "Steven", "Cynthia", "N"];
 
+  const url = import.meta.env.VITE_URL;
+
   useEffect(() => {
     async function getTeams() {
       setTeams([]);
-      const res = await axios.get("http://localhost:3000/team", {
+      const res = await axios.get(`${url}/team`, {
         withCredentials: true,
       });
       const playerTeams = res.data.result.map((team) => {
@@ -42,7 +44,7 @@ export default function BattlePage() {
       playerTeam.push(mon);
       highestLvl = Math.max(mon.level, highestLvl);
     }
-    const res = await axios.get("http://localhost:3000/trainer", {
+    const res = await axios.get(`${url}/trainer`, {
       params: { name: formInfo.trainer },
       withCredentials: true,
     });
